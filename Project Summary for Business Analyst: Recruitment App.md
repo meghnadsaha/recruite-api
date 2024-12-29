@@ -3,6 +3,8 @@
 #### **Overview**:
 The project aims to develop a comprehensive staffing and recruitment platform for multiple stakeholders, including candidates, vendors, clients, and administrators. This platform will manage job postings, candidate sourcing, assessments, interview scheduling, offer letters, and onboarding. It will also support workflow automation and advanced resume management to streamline the recruitment process.
 
+<img src="https://raw.githubusercontent.com/meghnadsaha/recruite-api/f0f925cb558e91f95cf102b00ba3c5ece078bef8/src/main/resources/Recruitment%20App%20sequence%20diagram.png"/>
+
 #### **Key Portals and User Interfaces**:
 1. **Candidate Portal**:
    - Allows job searching, application submission, and resume management.
