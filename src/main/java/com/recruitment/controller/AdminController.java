@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/employee")
-public class EmployeeController {
+@RequestMapping("/admin")
+public class AdminController {
 
     @GetMapping
-    public String employeeAccess() {
-        return "Welcome Employee. You have view-only access.";
+    public String adminAccess() {
+        return "Welcome Admin. You have universal access.";
     }
 }

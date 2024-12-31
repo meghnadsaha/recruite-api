@@ -12,10 +12,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 				version = "1.0",
 				description = "API documentation for the recruitment platform"
 		)
-)public class RecruiteApplication {
+)public class  RecruiteApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RecruiteApplication.class, args);
 	}
+
 
 }

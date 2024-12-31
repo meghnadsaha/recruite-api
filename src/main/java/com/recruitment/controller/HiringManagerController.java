@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/employee")
-public class EmployeeController {
+@RequestMapping("/hiring-manager")
+public class HiringManagerController {
 
     @GetMapping
-    public String employeeAccess() {
-        return "Welcome Employee. You have view-only access.";
+    public String hiringManagerAccess() {
+        return "Welcome Hiring Manager. You can manage job openings and candidates.";
     }
 }
