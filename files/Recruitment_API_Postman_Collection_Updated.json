@@ -1,0 +1,247 @@
+{
+    "info": {
+        "name": "Recruitment API Collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8080"
+        },
+        {
+            "key": "auth_token",
+            "value": ""
+        }
+    ],
+    "item": [
+        {
+            "name": "Login",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/auth/login",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "auth",
+                        "login"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"username\": \"admin\", \"password\": \"admin123\"}"
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "// Extract token from response and set it as an environment variable",
+                            "var jsonData = pm.response.json();",
+                            "pm.environment.set('auth_token', jsonData.token);"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Create Role",
+            "item": [
+                {
+                    "name": "Create Admin Role",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/roles-profiles",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "roles-profiles"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\": \"Admin\", \"description\": \"Administrator Role\"}"
+                        }
+                    }
+                },
+                {
+                    "name": "Create Hiring Manager Role",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/roles-profiles",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "roles-profiles"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\": \"Hiring Manager\", \"description\": \"Role for hiring managers\"}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Create Group",
+            "item": [
+                {
+                    "name": "Create Engineering Team",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/groups",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "groups"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"groupName\": \"Engineering Team\", \"description\": \"Developers and Engineers\"}"
+                        }
+                    }
+                },
+                {
+                    "name": "Create Marketing Team",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/groups",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "groups"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"groupName\": \"Marketing Team\", \"description\": \"Handles all marketing activities\"}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Add User",
+            "item": [
+                {
+                    "name": "Add Admin User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/users",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "users"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"firstName\": \"Alice\", \"lastName\": \"Smith\", \"email\": \"alice.smith@example.com\", \"phone\": \"9876543210\", \"address\": \"456 Pine Avenue\", \"territory\": \"Europe\", \"roleId\": 1, \"groupIds\": [101]}"
+                        }
+                    }
+                },
+                {
+                    "name": "Add Hiring Manager",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{auth_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/users",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "users"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"firstName\": \"Bob\", \"lastName\": \"Johnson\", \"email\": \"bob.johnson@example.com\", \"phone\": \"1234567890\", \"address\": \"789 Maple Street\", \"territory\": \"North America\", \"roleId\": 2, \"groupIds\": [102]}"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
