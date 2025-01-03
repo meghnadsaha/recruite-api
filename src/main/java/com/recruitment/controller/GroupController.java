@@ -41,8 +41,8 @@ public class GroupController {
         return ResponseEntity.ok(groupService.getAllGroups());
     }
 
-    @Operation(summary = "Update an existing Group",
-            description = "Add Users to a Group / Updates a Group based on the provided ID and Group object.")
+    @Operation(summary = "Update an existing Group / Add Users to a Group",
+            description = "Updates a Group based on the provided ID and Group object.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated Group") ,
             @ApiResponse(responseCode = "404", description = "Group not found")
