@@ -13,6 +13,6 @@ To explore the APIs interactively, visit the following URL in your browser:
 
 ![Swagger UI Screenshot](swagger_ui_screenshot.png)
 
-<img src="" alt="swagger_ui_screenshot"/>
+<img src="https://github.com/meghnadsaha/recruite-api/blob/feature/user-group-management/files/swagger-ui/Swagger%20UI%20-%20localhost.png" alt="swagger_ui_screenshot"/>
 ---
 
