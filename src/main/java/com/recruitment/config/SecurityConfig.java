@@ -32,6 +32,7 @@ public class SecurityConfig {
         http.csrf().disable()
             .authorizeHttpRequests()
             .requestMatchers("/api/auth/**").permitAll()
+            .requestMatchers("/v3/api-docs/**" , "/swagger-ui/**").permitAll()
             .requestMatchers("/admin/**").hasRole("ADMIN")
             .requestMatchers("/standard/**").hasRole("STANDARD")
             .requestMatchers("/hiring-manager/**").hasRole("HIRING_MANAGER")
