@@ -20,6 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
@@ -29,7 +30,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
-        http.csrf().disable()
+        http.cors() //  <--- Enable CORS
+            .and()
+            .csrf()
+            .disable()
             .authorizeHttpRequests()
             .requestMatchers("/api/auth/**").permitAll()
             .requestMatchers("/v3/api-docs/**" , "/swagger-ui/**").permitAll()
@@ -105,5 +109,29 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class).build();
+    }
+
+    @Bean
+    public org.springframework.web.cors.CorsConfigurationSource corsConfigurationSource() {
+        var configuration = new org.springframework.web.cors.CorsConfiguration();
+
+        // Set your allowed origins (or "*", but not recommended in production)
+        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://127.0.0.1:3000"));
+
+        // Set allowed methods
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+
+        // Set allowed headers
+        configuration.setAllowedHeaders(List.of("*"));
+
+        // Allow credentials if needed
+        configuration.setAllowCredentials(true);
+
+        // Preflight cache duration
+        configuration.setMaxAge(3600L);
+
+        var source = new org.springframework.web.cors.UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
