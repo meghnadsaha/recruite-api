@@ -1,8 +1,11 @@
 package com.recruitment.controller;
 
+import com.recruitment.dto.RoleDTO;
 import com.recruitment.model.UserRole;
 import com.recruitment.service.RoleService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -62,5 +65,30 @@ public class RoleController {
     public ResponseEntity<Void> deleteRole ( @PathVariable Long id ) {
         roleService.deleteRole(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @Operation(
+            summary = "Get Role Hierarchy",
+            description = "Fetch the complete hierarchy of roles in a tree-like structure."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Successfully retrieved the role hierarchy",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = UserRole.class)
+                    )
+            ) ,
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Internal server error",
+                    content = @Content
+            )
+    })
+    @GetMapping("/hierarchy")
+    public ResponseEntity<List<RoleDTO>> getRoleHierarchy () {
+        return ResponseEntity.ok(roleService.getRoleHierarchy());
     }
 }
