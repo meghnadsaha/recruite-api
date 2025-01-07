@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Tag(name = "User Management", description = "Endpoints for managing Users")
 @RestController
@@ -30,6 +31,14 @@ public class UserController {
     public ResponseEntity<User> createUser ( @RequestBody User user ) {
         return ResponseEntity.ok(userService.createUser(user));
     }
+    @PostMapping("/password")
+    public ResponseEntity<String> setPassword(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String newPassword = request.get("password");
+        userService.setPassword(email, newPassword);
+        return ResponseEntity.ok("Password updated successfully");
+    }
+
 
     @Operation(summary = "Retrieve all Users",
             description = "Returns a list of all users.")

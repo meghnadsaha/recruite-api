@@ -1,0 +1,17 @@
+{
+  "firstName": "James",
+  "lastName": "Hall",
+  "email": "user3@example.com",
+  "password": "password",
+  "role": {
+    "id": 1,
+    "name": "Hiring Manager"
+  },
+  "profile": {
+    "id": 2,
+    "name": "Administrator Profile"
+  },
+  "phone": "8412228747",
+  "address": "634 Main St",
+  "territory": "South"
+}

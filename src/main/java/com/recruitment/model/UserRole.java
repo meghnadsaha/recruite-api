@@ -3,14 +3,16 @@ package com.recruitment.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Data
 @ToString(exclude = "subordinates")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserRole {
 
     @Id
@@ -21,6 +23,7 @@ public class UserRole {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reports_to_id")
 //    @JsonIgnore
     private UserRole reportsTo;

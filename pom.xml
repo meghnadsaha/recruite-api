@@ -117,6 +117,12 @@
             <artifactId>jakarta.validation-api</artifactId>
             <version>3.0.2</version>
         </dependency>
+        <!--spring-boot-starter-webflux: This starter includes the WebClient API, which
+        is part of Spring's reactive programming model.-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
 
 
     </dependencies>

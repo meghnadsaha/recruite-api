@@ -1,8 +1,10 @@
 package com.recruitment.config;
 
 import com.recruitment.filter.JwtAuthenticationFilter;
+import com.recruitment.service.CustomUserDetailsService;
 import com.recruitment.service.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,6 +31,8 @@ public class SecurityConfig {
 
     private final JwtService jwtService;
 
+    @Autowired
+    private final CustomUserDetailsService userDetailsService;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http.cors() //  <--- Enable CORS
@@ -66,27 +71,27 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        return new InMemoryUserDetailsManager(
-                User.withUsername("admin")
-                    .password(passwordEncoder.encode("admin123"))
-                    .roles("ADMIN")
-                    .build(),
-                User.withUsername("standard")
-                    .password(passwordEncoder.encode("standard123"))
-                    .roles("STANDARD")
-                    .build(),
-                User.withUsername("hiringmanager")
-                    .password(passwordEncoder.encode("manager123"))
-                    .roles("HIRING_MANAGER")
-                    .build(),
-                User.withUsername("employee")
-                    .password(passwordEncoder.encode("employee123"))
-                    .roles("EMPLOYEE")
-                    .build()
-        );
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+//        return new InMemoryUserDetailsManager(
+//                User.withUsername("admin")
+//                    .password(passwordEncoder.encode("admin123"))
+//                    .roles("ADMIN")
+//                    .build(),
+//                User.withUsername("standard")
+//                    .password(passwordEncoder.encode("standard123"))
+//                    .roles("STANDARD")
+//                    .build(),
+//                User.withUsername("hiringmanager")
+//                    .password(passwordEncoder.encode("manager123"))
+//                    .roles("HIRING_MANAGER")
+//                    .build(),
+//                User.withUsername("employee")
+//                    .password(passwordEncoder.encode("employee123"))
+//                    .roles("EMPLOYEE")
+//                    .build()
+//        );
+//    }
 
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter(UserDetailsService userDetailsService) {
@@ -106,9 +111,19 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+//    @Bean
+//    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+//        return http.getSharedObject(AuthenticationManagerBuilder.class).build();
+//    }
+
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationManagerBuilder builder) throws Exception {
+//        return builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()).and().build();
+//    }
+
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class).build();
+    public AuthenticationManager authenticationManager( AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
