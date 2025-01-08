@@ -69,8 +69,8 @@ public class AuthController {
                                                       .phone(user.getPhone())
                                                       .address(user.getAddress())
                                                       .territory(user.getTerritory())
-                                                      .role(user.getRole() != null ? user.getRole() : null) // Assuming UserRole has a getName() method
-                                                      .profile(user.getProfile() != null ? user.getProfile() : null) // Assuming UserProfile has a getName() method
+                                                      .role(user.getRole() != null ? user.getRole().getName() : null) // Assuming UserRole has a getName() method
+                                                      .profile(user.getProfile() != null ? user.getProfile().getName() : null) // Assuming UserProfile has a getName() method
                                                       .enabled(user.isEnabled())
                                                       .token(token) // Add the token to the DTO
                                                       .build();

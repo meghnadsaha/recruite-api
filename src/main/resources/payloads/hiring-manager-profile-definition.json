@@ -5,8 +5,8 @@
     "modulePermissions": [
       {
         "entity": "Home",
-        "tabVisible": true,
-        "view": true,
+        "tabVisible": false,
+        "view": false,
         "create": true,
         "edit": true,
         "delete": true
@@ -14,41 +14,41 @@
       {
         "entity": "Job Openings",
         "tabVisible": true,
-        "view": true,
+        "view": false,
         "create": true,
-        "edit": true,
+        "edit": false,
         "delete": true
       },
       {
         "entity": "Applications",
         "tabVisible": true,
         "view": true,
-        "create": true,
-        "edit": true,
-        "delete": true
+        "create": false,
+        "edit": false,
+        "delete": false
       },
       {
         "entity": "Candidates",
-        "tabVisible": true,
-        "view": true,
-        "create": true,
+        "tabVisible": false,
+        "view": false,
+        "create": false,
         "edit": true,
         "delete": true
       },
       {
         "entity": "Referrals",
-        "tabVisible": true,
-        "view": true,
+        "tabVisible": false,
+        "view": false,
         "create": true,
         "edit": true,
-        "delete": true
+        "delete": false
       },
       {
         "entity": "Interviews",
         "tabVisible": true,
-        "view": true,
+        "view": false,
         "create": true,
-        "edit": true,
+        "edit": false,
         "delete": true
       },
       {
@@ -56,8 +56,8 @@
         "tabVisible": true,
         "view": true,
         "create": true,
-        "edit": true,
-        "delete": true
+        "edit": false,
+        "delete": false
       },
       {
         "entity": "Analytics",
@@ -70,22 +70,22 @@
       {
         "entity": "Metrics",
         "tabVisible": true,
-        "view": true,
+        "view": false,
         "create": true,
         "edit": true,
-        "delete": true
+        "delete": false
       },
       {
         "entity": "Dashboards",
         "tabVisible": true,
-        "view": true,
+        "view": false,
         "create": true,
-        "edit": true,
-        "delete": true
+        "edit": false,
+        "delete": false
       },
       {
         "entity": "Reports",
-        "tabVisible": true,
+        "tabVisible": false,
         "view": true,
         "create": true,
         "edit": true,
@@ -96,23 +96,23 @@
         "tabVisible": true,
         "view": true,
         "create": true,
-        "edit": true,
-        "delete": true
+        "edit": false,
+        "delete": false
       },
       {
         "entity": "Assessments",
-        "tabVisible": true,
+        "tabVisible": false,
         "view": true,
-        "create": true,
+        "create": false,
         "edit": true,
         "delete": true
       },
       {
         "entity": "To-Dos",
-        "tabVisible": true,
-        "view": true,
-        "create": true,
-        "edit": true,
+        "tabVisible": false,
+        "view": false,
+        "create": false,
+        "edit": false,
         "delete": true
       },
       {
@@ -120,36 +120,36 @@
         "tabVisible": true,
         "view": true,
         "create": true,
-        "edit": true,
+        "edit": false,
         "delete": true
       },
       {
         "entity": "Notes",
-        "tabVisible": true,
-        "view": true,
+        "tabVisible": false,
+        "view": false,
         "create": true,
         "edit": true,
-        "delete": true
+        "delete": false
       },
       {
         "entity": "Recruiter Inbox",
         "tabVisible": true,
-        "view": true,
+        "view": false,
         "create": true,
-        "edit": true,
-        "delete": true
+        "edit": false,
+        "delete": false
       },
       {
         "entity": "My Actions",
         "tabVisible": true,
-        "view": true,
-        "create": true,
-        "edit": true,
+        "view": false,
+        "create": false,
+        "edit": false,
         "delete": true
       },
       {
         "entity": "Emails",
-        "tabVisible": true,
+        "tabVisible": false,
         "view": true,
         "create": true,
         "edit": true,
@@ -157,27 +157,27 @@
       },
       {
         "entity": "Documents",
-        "tabVisible": true,
+        "tabVisible": false,
         "view": true,
-        "create": true,
-        "edit": true,
-        "delete": true
+        "create": false,
+        "edit": false,
+        "delete": false
       },
       {
         "entity": "Submissions",
-        "tabVisible": true,
+        "tabVisible": false,
         "view": true,
-        "create": true,
-        "edit": true,
+        "create": false,
+        "edit": false,
         "delete": true
       },
       {
         "entity": "Offers",
-        "tabVisible": true,
+        "tabVisible": false,
         "view": true,
-        "create": true,
+        "create": false,
         "edit": true,
-        "delete": true
+        "delete": false
       }
     ],
     "socialPermissions": {

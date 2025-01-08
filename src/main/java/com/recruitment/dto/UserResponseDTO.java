@@ -20,8 +20,8 @@ public class UserResponseDTO {
     private String phone;
     private String address;
     private String territory;
-    private UserRole role;
-    private UserProfile profile;
+    private String role;
+    private String profile;
     private boolean enabled;
     private String token; // JWT token
 }
