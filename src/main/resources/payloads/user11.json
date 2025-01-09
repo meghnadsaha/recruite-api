@@ -1,7 +1,7 @@
 {
   "firstName": "John",
   "lastName": "Doe",
-  "email": "john.doe@example.com",
+  "email": "john_doe34@gmail.com",
   "password": "password",
   "role": {
     "id": 1,
