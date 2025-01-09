@@ -3,7 +3,6 @@
 Below is a concise summary of the relationships and their mappings between tables, along with an explanation of how they connect.
 
 
-<img src="c" alt="role-user-group-db-mapping.png"/>
 <img src="https://github.com/meghnadsaha/recruite-api/blob/feature/user-group-management/files/images/job-opening/job-opening-schema-diagram.png?raw=true" alt="Logo" title="job-opening-schema-diagram" >
 
 ---
