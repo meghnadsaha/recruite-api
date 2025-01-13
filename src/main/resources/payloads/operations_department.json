@@ -1,0 +1,11 @@
+{
+  "departmentName": "Operations",
+  "parentDepartmentId": null,
+  "departmentLead": {
+    "id": 10,
+    "firstName": "Ravi",
+    "lastName": "Singh",
+    "email": "ravi_singh29@gmail.com"
+  },
+  "attachmentPath": "/attachments/operations.pdf"
+}

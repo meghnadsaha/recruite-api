@@ -2,12 +2,14 @@ package com.recruitment.initializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.recruitment.dto.UserResponseDTO;
+import com.recruitment.model.Department;
 import com.recruitment.model.User;
 import com.recruitment.model.UserProfile;
 import com.recruitment.model.UserRole;
 import com.recruitment.repository.ProfileRepository;
 import com.recruitment.repository.RoleRepository;
 import com.recruitment.repository.UserRepository;
+import com.recruitment.service.DepartmentService;
 import com.recruitment.service.FileService;
 import com.recruitment.service.RoleService;
 import com.recruitment.service.UserService;
@@ -43,6 +45,7 @@ public class DataLoader {
 
     private final UserService userService;
 
+    private final DepartmentService departmentService;
     private String token;
 
     public void setToken ( String token ) {
@@ -59,7 +62,7 @@ public class DataLoader {
         createProfiles();
 //        createUsersUsingRestTemplate();
         createUsers();
-
+//        createDepartment();
 
         log.info("\n" +
                          "  ____        _        _         _                                      \n" +
@@ -404,6 +407,57 @@ public class DataLoader {
         }
 
         log.info("Finished processing all user files.");
+    }
+
+
+
+    private void createDepartment () throws Exception {
+        log.info("Starting creation of departments...");
+
+        String[] departmentFiles = {
+                "engineering_department.json",
+                "human_resources_department.json",
+                "marketing_department.json",
+                "sales_department.json",
+                "finance_department.json",
+                "product_department.json",
+                "support_department.json",
+                "legal_department.json",
+                "it_department.json",
+                "operations_department.json"
+        };
+
+        for (String departmentFile : departmentFiles) {
+            log.info("Processing user file: {}" , departmentFile);
+
+            try {
+                // Load and parse the file content
+                String fileContent = fileService.getFileContent(departmentFile);
+
+                if (fileContent == null || fileContent.isBlank()) {
+                    log.warn("Skipping empty or null file: {}" , departmentFile);
+                    continue;
+                }
+
+                // Deserialize JSON into User object
+                ObjectMapper objectMapper = new ObjectMapper();
+                Department department = objectMapper.readValue(fileContent , Department.class);
+
+                // Use the departmentService to create the Department
+                Department createdUser = departmentService.createDepartment(department);
+
+
+                log.info("Successfully created user: {}" , createdUser);
+            } catch (Exception e) {
+                log.error("Error occurred while creating departments from file {}: {}" , departmentFile , e.getMessage() , e);
+            }
+
+            // Add a 2-second delay between processing files
+            log.info("Delaying for 2 seconds before processing the next file...");
+            TimeUnit.SECONDS.sleep(2);
+        }
+
+        log.info("Finished processing all department files.");
     }
 
 }

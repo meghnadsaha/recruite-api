@@ -1,0 +1,11 @@
+{
+  "departmentName": "IT",
+  "parentDepartmentId": 1,
+  "departmentLead": {
+    "id": 9,
+    "firstName": "James",
+    "lastName": "Hall",
+    "email": "james_hall27@gmail.com"
+  },
+  "attachmentPath": "/attachments/it.pdf"
+}

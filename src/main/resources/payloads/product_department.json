@@ -1,0 +1,11 @@
+{
+  "departmentName": "Product",
+  "parentDepartmentId": 1,
+  "departmentLead": {
+    "id": 6,
+    "firstName": "Sarah",
+    "lastName": "Brown",
+    "email": "sarah_brown12@gmail.com"
+  },
+  "attachmentPath": "/attachments/product.pdf"
+}
