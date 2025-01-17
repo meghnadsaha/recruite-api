@@ -26,6 +26,7 @@ public class DepartmentDTO {
 
     private Long departmentLeadId; // Department lead ID
 
+    private String departmentLeadName;
 
     private String attachmentPath; // Path for attachments
 

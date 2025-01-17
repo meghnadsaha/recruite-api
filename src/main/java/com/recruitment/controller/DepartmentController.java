@@ -37,7 +37,7 @@ public class DepartmentController {
     public ResponseEntity<DepartmentDTO> createDepartment(@RequestBody DepartmentDTO departmentDTO) {
         Department department = departmentService.createDepartment(departmentDTO);
 
-        return ResponseEntity.ok(departmentService.mapToDTO(department));
+        return ResponseEntity.ok(DepartmentMapper.toDTO(department));
     }
 
     @Operation(summary = "Get all departments", description = "Retrieves a list of all departments")

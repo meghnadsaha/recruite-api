@@ -63,22 +63,7 @@ public class DepartmentService {
         department.setAttachmentPath(departmentDTO.getAttachmentPath());
         return department;
     }
-    public DepartmentDTO mapToDTO ( Department department ) {
-        DepartmentDTO dto = new DepartmentDTO();
-        dto.setId(department.getId());
-        dto.setDepartmentName(department.getDepartmentName());
-        dto.setAttachmentPath(department.getAttachmentPath());
 
-        if (department.getParentDepartment() != null) {
-            dto.setParentDepartmentId(department.getParentDepartment().getId());
-        }
-
-        if (department.getDepartmentLead() != null) {
-            dto.setDepartmentLeadId(department.getDepartmentLead().getId());
-        }
-
-        return dto;
-    }
 
 
     public List<Department> getAllDepartments() {
