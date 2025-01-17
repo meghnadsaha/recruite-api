@@ -1,6 +1,8 @@
 package com.recruitment.dto;
 
 
+import com.recruitment.model.Department;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -16,8 +18,16 @@ public class DepartmentDTO {
      * For a scalable application, use DTOs to ensure clear separation of concerns and avoid exposing your internal entity structures directly.
      */
     private Long id;
+
+    @NotBlank(message = "Department name is required")
     private String departmentName;
-    private String parentDepartmentName; // Optional
-    private String departmentLeadName;  // Optional
-    private String attachmentPath;
+
+    private Long parentDepartmentId; // Parent department ID
+
+    private Long departmentLeadId; // Department lead ID
+
+
+    private String attachmentPath; // Path for attachments
+
+
 }

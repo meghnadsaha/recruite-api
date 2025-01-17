@@ -1,11 +1,6 @@
 {
   "departmentName": "Engineering",
   "parentDepartmentId": null,
-  "departmentLead": {
-    "id": 1,
-    "firstName": "Rohit",
-    "lastName": "Sharma",
-    "email": "rohitsunilsharma2000@gmail.com"
-  },
-  "attachmentPath": "/attachments/engineering.pdf"
+  "departmentLeadId": 1,
+  "attachmentPath": "/attachments/sales.pdf"
 }

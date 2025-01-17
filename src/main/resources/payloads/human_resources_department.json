@@ -1,11 +1,6 @@
 {
   "departmentName": "Human Resources",
   "parentDepartmentId": null,
-  "departmentLead": {
-    "id": 2,
-    "firstName": "Sarah",
-    "lastName": "Taylor",
-    "email": "sarah_taylor88@gmail.com"
-  },
+  "departmentLeadId": 2,
   "attachmentPath": "/attachments/hr.pdf"
 }

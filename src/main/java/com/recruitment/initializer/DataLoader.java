@@ -1,6 +1,7 @@
 package com.recruitment.initializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.recruitment.dto.DepartmentDTO;
 import com.recruitment.dto.UserResponseDTO;
 import com.recruitment.model.Department;
 import com.recruitment.model.User;
@@ -62,7 +63,7 @@ public class DataLoader {
         createProfiles();
 //        createUsersUsingRestTemplate();
         createUsers();
-//        createDepartment();
+        createDepartment();
 
         log.info("\n" +
                          "  ____        _        _         _                                      \n" +
@@ -117,7 +118,7 @@ public class DataLoader {
 
             // Delay before creating the admin user
             log.info("Waiting for 2 seconds before creating the admin user...");
-            TimeUnit.SECONDS.sleep(2);
+            //TimeUnit.SECONDS.sleep(2);
 
             // 3. Check if admin user exists, and create if necessary
             log.info("Checking for admin user...");
@@ -252,7 +253,7 @@ public class DataLoader {
             }
 
             log.info("Delaying for 2 seconds before processing the next file...");
-            TimeUnit.SECONDS.sleep(2);
+            //TimeUnit.SECONDS.sleep(2);
         }
 
         log.info("Finished processing all role files.");
@@ -290,7 +291,7 @@ public class DataLoader {
 
             // Add a 2-second delay between processing files
             log.info("Adding a delay of 2 seconds before processing the next file...");
-            Thread.sleep(2000);
+//            Thread.sleep(2000);
         }
 
         log.info("Completed processing all files for profiles.");
@@ -327,7 +328,7 @@ public class DataLoader {
             }
 
             log.info("Delaying for 2 seconds before processing the next file...");
-            TimeUnit.SECONDS.sleep(2);
+            //TimeUnit.SECONDS.sleep(2);
         }
 
         log.info("Finished processing all profile files.");
@@ -363,7 +364,7 @@ public class DataLoader {
             }
 
             log.info("Delaying for 2 seconds before processing the next file...");
-            TimeUnit.SECONDS.sleep(2);
+            //TimeUnit.SECONDS.sleep(2);
         }
 
         log.info("Finished processing all user files.");
@@ -403,7 +404,7 @@ public class DataLoader {
 
             // Add a 2-second delay between processing files
             log.info("Delaying for 2 seconds before processing the next file...");
-            TimeUnit.SECONDS.sleep(2);
+            //TimeUnit.SECONDS.sleep(2);
         }
 
         log.info("Finished processing all user files.");
@@ -411,7 +412,7 @@ public class DataLoader {
 
 
 
-    private void createDepartment () throws Exception {
+    private void createDepartment() throws Exception {
         log.info("Starting creation of departments...");
 
         String[] departmentFiles = {
@@ -428,36 +429,43 @@ public class DataLoader {
         };
 
         for (String departmentFile : departmentFiles) {
-            log.info("Processing user file: {}" , departmentFile);
+            log.info("Processing department file: {}", departmentFile);
 
             try {
                 // Load and parse the file content
                 String fileContent = fileService.getFileContent(departmentFile);
 
                 if (fileContent == null || fileContent.isBlank()) {
-                    log.warn("Skipping empty or null file: {}" , departmentFile);
+                    log.warn("Skipping empty or null file: {}", departmentFile);
                     continue;
                 }
 
-                // Deserialize JSON into User object
+                // Log file content for debugging
+                log.debug("File content for {}: {}", departmentFile, fileContent);
+
+                // Deserialize JSON into DepartmentDTO object
                 ObjectMapper objectMapper = new ObjectMapper();
-                Department department = objectMapper.readValue(fileContent , Department.class);
+                DepartmentDTO departmentDTO = objectMapper.readValue(fileContent, DepartmentDTO.class);
+
+                // Validate the parsed object
+                log.debug("Parsed DepartmentDTO: {}", departmentDTO);
 
                 // Use the departmentService to create the Department
-                Department createdUser = departmentService.createDepartment(department);
+                Department createdDepartment = departmentService.createDepartment(departmentDTO);
 
-
-                log.info("Successfully created user: {}" , createdUser);
+                log.info("Successfully created department: {}", createdDepartment.getId());
             } catch (Exception e) {
-                log.error("Error occurred while creating departments from file {}: {}" , departmentFile , e.getMessage() , e);
+                log.error("Error occurred while creating department from file {}: {}",
+                          departmentFile, e.getMessage(), e);
             }
 
             // Add a 2-second delay between processing files
             log.info("Delaying for 2 seconds before processing the next file...");
-            TimeUnit.SECONDS.sleep(2);
+//            TimeUnit.SECONDS.sleep(2);
         }
 
         log.info("Finished processing all department files.");
     }
+
 
 }
