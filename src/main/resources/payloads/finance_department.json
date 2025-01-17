@@ -1,11 +1,6 @@
 {
   "departmentName": "Finance",
   "parentDepartmentId": null,
-  "departmentLead": {
-    "id": 5,
-    "firstName": "David",
-    "lastName": "Taylor",
-    "email": "david_taylor47@gmail.com"
-  },
+  "departmentLeadId": 5,
   "attachmentPath": "/attachments/finance.pdf"
 }

@@ -8,11 +8,11 @@ public class DepartmentMapper {
         DepartmentDTO dto = new DepartmentDTO();
         dto.setId(department.getId());
         dto.setDepartmentName(department.getDepartmentName());
-        dto.setParentDepartmentName(
-                department.getParentDepartment() != null ? department.getParentDepartment().getDepartmentName() : null
+        dto.setParentDepartmentId(
+                department.getParentDepartment() != null ? department.getParentDepartment().getId() : null
         );
-        dto.setDepartmentLeadName(
-                department.getDepartmentLead() != null ? department.getDepartmentLead().getFirstName() + " " + department.getDepartmentLead().getLastName() : null
+        dto.setDepartmentLeadId(
+                department.getDepartmentLead() != null ? department.getDepartmentLead().getId()  : null
         );
         dto.setAttachmentPath(department.getAttachmentPath());
         return dto;

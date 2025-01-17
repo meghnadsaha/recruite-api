@@ -31,8 +31,13 @@ public class DepartmentController {
             @ApiResponse(responseCode = "400", description = "Invalid input data")
     })
     @PostMapping
-    public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
-        return ResponseEntity.ok(departmentService.createDepartment(department));
+//    public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
+//        return ResponseEntity.ok(departmentService.createDepartment(department));
+//    }
+    public ResponseEntity<DepartmentDTO> createDepartment(@RequestBody DepartmentDTO departmentDTO) {
+        Department department = departmentService.createDepartment(departmentDTO);
+
+        return ResponseEntity.ok(departmentService.mapToDTO(department));
     }
 
     @Operation(summary = "Get all departments", description = "Retrieves a list of all departments")

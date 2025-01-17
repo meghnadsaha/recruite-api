@@ -1,11 +1,6 @@
 {
   "departmentName": "Support",
   "parentDepartmentId": 1,
-  "departmentLead": {
-    "id": 7,
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john_doe34@gmail.com"
-  },
+  "departmentLeadId": 7,
   "attachmentPath": "/attachments/support.pdf"
 }

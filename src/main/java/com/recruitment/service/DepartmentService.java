@@ -1,27 +1,85 @@
 package com.recruitment.service;
 
 
+import com.recruitment.dto.DepartmentDTO;
 import com.recruitment.model.Department;
+import com.recruitment.model.User;
 import com.recruitment.repository.DepartmentRepository;
+import com.recruitment.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Slf4j
 @Service
 public class DepartmentService {
 
-    private final DepartmentRepository departmentRepository;
+    @Autowired
+    private  DepartmentRepository departmentRepository;
+    @Autowired
+    private  UserRepository userRepository;
 
-    public DepartmentService(DepartmentRepository departmentRepository) {
-        this.departmentRepository = departmentRepository;
-    }
 
-    public Department createDepartment(Department department) {
-        if (department.getDepartmentName() == null || department.getDepartmentName().isBlank()) {
-            throw new IllegalArgumentException("Department name is required");
-        }
+    public Department createDepartment(DepartmentDTO departmentDTO) {
+        validateDepartmentDTO(departmentDTO);
+
+        Department department = mapToEntity(departmentDTO);
+
+        // Log the creation process
+        log.info("Creating department: {}", department.getDepartmentName());
+
+        // Save and return
         return departmentRepository.save(department);
     }
+
+    private void validateDepartmentDTO(DepartmentDTO departmentDTO) {
+        if (departmentDTO.getDepartmentName() == null || departmentDTO.getDepartmentName().isEmpty()) {
+            throw new IllegalArgumentException("Department name is required");
+        }
+        if (departmentDTO.getParentDepartmentId() != null && departmentDTO.getParentDepartmentId().equals(departmentDTO.getId())) {
+            throw new IllegalArgumentException("A department cannot be its own parent.");
+        }
+    }
+
+    private Department mapToEntity(DepartmentDTO departmentDTO) {
+        Department department = new Department();
+        department.setDepartmentName(departmentDTO.getDepartmentName());
+
+        if (departmentDTO.getParentDepartmentId() != null) {
+            department.setParentDepartment(
+                    departmentRepository.findById(departmentDTO.getParentDepartmentId())
+                                        .orElseThrow(() -> new IllegalArgumentException("Parent department not found with ID: " + departmentDTO.getParentDepartmentId()))
+            );
+        }
+
+        if (departmentDTO.getDepartmentLeadId() != null) {
+            department.setDepartmentLead(
+                    userRepository.findById(departmentDTO.getDepartmentLeadId())
+                                  .orElseThrow(() -> new IllegalArgumentException("Department lead not found with ID: " + departmentDTO.getDepartmentLeadId()))
+            );
+        }
+
+        department.setAttachmentPath(departmentDTO.getAttachmentPath());
+        return department;
+    }
+    public DepartmentDTO mapToDTO ( Department department ) {
+        DepartmentDTO dto = new DepartmentDTO();
+        dto.setId(department.getId());
+        dto.setDepartmentName(department.getDepartmentName());
+        dto.setAttachmentPath(department.getAttachmentPath());
+
+        if (department.getParentDepartment() != null) {
+            dto.setParentDepartmentId(department.getParentDepartment().getId());
+        }
+
+        if (department.getDepartmentLead() != null) {
+            dto.setDepartmentLeadId(department.getDepartmentLead().getId());
+        }
+
+        return dto;
+    }
+
 
     public List<Department> getAllDepartments() {
         return departmentRepository.findAll();

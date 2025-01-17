@@ -1,11 +1,6 @@
 {
   "departmentName": "Marketing",
   "parentDepartmentId": null,
-  "departmentLead": {
-    "id": 2,
-    "firstName": "Emily",
-    "lastName": "White",
-    "email": "emily_white36@gmail.com"
-  },
+  "departmentLeadId": 3,
   "attachmentPath": "/attachments/marketing.pdf"
 }

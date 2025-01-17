@@ -1,11 +1,6 @@
 {
   "departmentName": "Legal",
   "parentDepartmentId": 5,
-  "departmentLead": {
-    "id": 8,
-    "firstName": "Emma",
-    "lastName": "Hall",
-    "email": "emma_hall78@gmail.com"
-  },
+  "departmentLeadId": 8,
   "attachmentPath": "/attachments/legal.pdf"
 }
